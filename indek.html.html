@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELIKA IMPORT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: pink; /* Warna latar belakang merah muda */
+        }
+        #map {
+            width: 80%;
+            height: 400px;
+            margin: auto;
+            border: 2px solid black;
+        }
+        #logo {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>VELIKA IMPORT</h2>
+    <p>Masukkan Kode Produk</p>
+    <input type="text" id="nameInput" placeholder="Kode Produk">
+    <button onclick="generateFakeLocation()">Lacak</button>
+    <p id="result"></p>
+    <iframe id="googleMap" width="80%" height="400" style="border:2px solid black; display:none;" allowfullscreen></iframe>
+    
+    <script>
+        function generateFakeLocation() {
+            const name = document.getElementById("nameInput").value;
+            if (!name) {
+                alert("Masukkan nama dulu!");
+                return;
+            }
+            
+            const fixedLocation = { name: "Edis Sutoyo", query: "Jl. Jenderal Basuki Rachmat 8,Kedungdoro, Kec. Genteng, Surabaya, Jawa Timur 60261, Indonesia" };
+
+            document.getElementById("result").innerHTML = `${name} sedang dalam perjalanan Kurir <strong>${fixedLocation.name}</strong>`;
+
+            const googleMapFrame = document.getElementById("googleMap");
+            googleMapFrame.src = `https://www.google.com/maps?q=${fixedLocation.query}&output=embed`;
+            googleMapFrame.style.display = "block";
+        }
+    </script>
+</body>
+</html>
